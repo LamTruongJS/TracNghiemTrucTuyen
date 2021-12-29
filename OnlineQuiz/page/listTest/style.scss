@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.content__test__left {
+  padding-top: 2rem;
+  padding-left: 0.5rem;
+  .left__name {
+    font-size: 15px;
+    color: rgba(80, 77, 77, 0.8);
+  }
+
+  .left__search {
+    width: 100%;
+    margin-top: 1rem;
+
+    input {
+      margin-right: 0.5rem;
+      padding: 8px 4px;
+      outline-style: none;
+      width: 95%;
+      background-color: #fff;
+      box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 20%);
+      border: 3px solid #26ba99;
+    }
+  }
+  .left__rank__test {
+    ul {
+      font-size: 15px;
+      color: rgba(80, 77, 77, 0.8);
+
+      overflow: hidden;
+      li {
+        margin: 5px 10px 0;
+        a {
+          white-space: pre-wrap;
+          overflow: hidden; // ẩn các nội dung khi kích thước lớn hơn chiều rộng khối bên ngoài
+          text-overflow: ellipsis; //thêm 3 dấu chấm ở cuối
+          -webkit-line-clamp: 1; // số dòng muốn hiển thị
+          -webkit-box-orient: vertical;
+          display: -webkit-box;
+        }
+        &:hover {
+          color: #26ba99;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .left__rank__mark {
+    ul {
+      font-size: 15px;
+      color: rgba(80, 77, 77, 0.8);
+
+      overflow: hidden;
+      li {
+        margin: 5px 10px 0;
+        a {
+          white-space: pre-wrap;
+          overflow: hidden; // ẩn các nội dung khi kích thước lớn hơn chiều rộng khối bên ngoài
+          text-overflow: ellipsis; //thêm 3 dấu chấm ở cuối
+          -webkit-line-clamp: 1; // số dòng muốn hiển thị
+          -webkit-box-orient: vertical;
+          display: -webkit-box;
+        }
+        &:hover {
+          color: #26ba99;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.content__test__item {
+  padding: 0.5rem 1rem;
+  font-size: 15px;
+  height: 12rem;
+  max-height: 12rem;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 20%);
+  border-radius: 1rem;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  p:last-child {
+    width: 100%;
+    font-size: 14px;
+    overflow: hidden; // ẩn các nội dung khi kích thước lớn hơn chiều rộng khối bên ngoài
+    text-overflow: ellipsis; //thêm 3 dấu chấm ở cuối
+    -webkit-line-clamp: 5; // số dòng muốn hiển thị
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+  }
+}

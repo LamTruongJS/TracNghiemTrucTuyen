@@ -1,0 +1,97 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.main__test {
+  position: relative;
+}
+.main__test .container__test {
+  padding: 0.5rem 5rem;
+}
+.main__test .container__test .test__item {
+  padding: 1rem 2rem;
+  letter-spacing: 1px;
+  text-align: justify;
+  background-color: #fff;
+  border: 1px solid #009432;
+  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  width: 100%;
+}
+.main__test .container__test .test__item p {
+  margin-bottom: 0.5rem;
+}
+.main__test .container__test .test__item [type=radio]:checked,
+.main__test .container__test .test__item [type=radio]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+.main__test .container__test .test__item [type=radio]:checked + label,
+.main__test .container__test .test__item [type=radio]:not(:checked) + label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
+}
+.main__test .container__test .test__item [type=radio]:checked + label:before,
+.main__test .container__test .test__item [type=radio]:not(:checked) + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  background: #fff;
+}
+.main__test .container__test .test__item [type=radio]:checked + label:after,
+.main__test .container__test .test__item [type=radio]:not(:checked) + label:after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: #26ba99;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.main__test .container__test .test__item [type=radio]:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+.main__test .container__test .test__item [type=radio]:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.main__test .container__list {
+  position: fixed;
+  right: 1rem;
+  top: 7rem;
+  z-index: 9999;
+  min-width: 17rem;
+}
+.main__test .container__list div a:hover {
+  cursor: pointer;
+  background-color: #1c8562;
+  border-color: #1c8562;
+  color: white;
+  transition: all 0.5s ease;
+}
+.main__test .container__list .list__time {
+  color: red;
+}
+
+/*# sourceMappingURL=style.css.map */

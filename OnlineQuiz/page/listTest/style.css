@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.content__test__left {
+  padding-top: 2rem;
+  padding-left: 0.5rem;
+}
+.content__test__left .left__name {
+  font-size: 15px;
+  color: rgba(80, 77, 77, 0.8);
+}
+.content__test__left .left__search {
+  width: 100%;
+  margin-top: 1rem;
+}
+.content__test__left .left__search input {
+  margin-right: 0.5rem;
+  padding: 8px 4px;
+  outline-style: none;
+  width: 95%;
+  background-color: #fff;
+  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.2);
+  border: 3px solid #26ba99;
+}
+.content__test__left .left__rank__test ul {
+  font-size: 15px;
+  color: rgba(80, 77, 77, 0.8);
+  overflow: hidden;
+}
+.content__test__left .left__rank__test ul li {
+  margin: 5px 10px 0;
+}
+.content__test__left .left__rank__test ul li a {
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+.content__test__left .left__rank__test ul li:hover {
+  color: #26ba99;
+  cursor: pointer;
+}
+.content__test__left .left__rank__mark ul {
+  font-size: 15px;
+  color: rgba(80, 77, 77, 0.8);
+  overflow: hidden;
+}
+.content__test__left .left__rank__mark ul li {
+  margin: 5px 10px 0;
+}
+.content__test__left .left__rank__mark ul li a {
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+.content__test__left .left__rank__mark ul li:hover {
+  color: #26ba99;
+  cursor: pointer;
+}
+
+.content__test__item {
+  padding: 0.5rem 1rem;
+  font-size: 15px;
+  height: 12rem;
+  max-height: 12rem;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+.content__test__item p:last-child {
+  width: 100%;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+
+/*# sourceMappingURL=style.css.map */
