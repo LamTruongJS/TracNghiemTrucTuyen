@@ -1,0 +1,19 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  height: 100%;
+  background-color: #009432;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section{
+    border-radius:10px;
+}

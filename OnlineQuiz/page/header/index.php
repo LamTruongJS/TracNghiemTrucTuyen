@@ -15,6 +15,8 @@
 </head>
 
 <body>
+    
+  
     <nav class="title container min-w-full h-10 flex justify-between">
         <div class="title__date ml-2  pt-2 inline-block" id='text__clock'>
             Thứ 4 ngày 20 tháng 11, 08:11
@@ -23,11 +25,23 @@
             <input class="search__input h-8" type="text" placeholder="Nhập từ bạn cần tìm" />
         </div>
         <div class="inline-block divide-x divide-green-500 mr-14 mt-2">
-            <button type="button" class="mr-2 hover:text-green-500">
-                <a href="http://">Đăng nhập</a>
-            </button>
+            
+            <?php 
+            session_start();
+            $email= $_SESSION['email'];
+            if (!isset($_SESSION['email'])) {
+                header('Location: /onlineQuiz/page/login');
+            }
+            require '../../config.php';
+            $sql="SELECT * FROM user where email like '$email'";
+            $result= mysqli_query($conn,$sql);
+            $row=mysqli_fetch_array($result);
+            echo "<button type='button' class='mr-2 hover:text-green-500'>
+                    <a href='#'>".$row['tenUser']."</a></button>";
+
+            ?>
             <button type="button" class="pl-2 hover:text-green-500">
-                <a href="http://">Đăng kí</a>
+                <a href="../logout">Đăng xuất</a>
             </button>
         </div>
     </nav>
@@ -53,7 +67,7 @@
                 </ol>
             </li>
             <li class="menu-item">
-                <a href="#0">Bài kiểm tra</a>
+                <a href="../listTest">Bài kiểm tra</a>
                 <ol class="sub-menu">
                     <li class="menu-item"><a href="#0">Lớp 10</a></li>
                     <li class="menu-item"><a href="#0">Lớp 11</a></li>

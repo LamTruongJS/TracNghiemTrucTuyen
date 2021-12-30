@@ -19,8 +19,10 @@
 </head>
 
 <body>
-    <?php require "../header/index.php"; ?>
-
+    <?php require "../header/index.php"; 
+    
+   
+    ?>
 
     <nav class='container min-w-full -mt-2 overflow-hidden p-0'>
         <div class='container min-w-full overflow-hidden content__one'>
