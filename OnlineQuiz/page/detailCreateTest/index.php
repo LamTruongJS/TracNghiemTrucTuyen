@@ -17,33 +17,34 @@
     <link rel="stylesheet" href="../footer/style.css">
     <title>Document</title>
 </head>
+
 <body>
     <?php require '../header/index.php' ?>
     <section class='container min-w-full'>
         <div class='m-5 grid grid-cols-8 gap-1'>
-          
-          <div class='col-span-6 content__left'>
-            <form class='form__search'>
-                <p>Danh sách sinh viên</p>
-                <input type="text" class='search__input' name="search" placeholder="Search..">
-                <select class ="sort__input" name = "sort">
-                    
-                    <option value = "nameASC">Tăng dần theo tên</option>
-                    <option value = "nameDESC">Giảm dần theo tên</option>
-                    <option value = "markASC">Tăng dần theo điểm</option>
-                    <option value = "markDESC">Giảm dần theo điểm</option>
-                </select>
-            </form>
-            <div>
-                <table class="table__students">
-                    <tr>
-                        <th>STT</th>
-                        <th>Tên Sinh viên</th>
-                        <th>Email</th>
-                        <th>Điểm số</th>
-                        <th>Thời gian làm bài</th>
-                    </tr>
-                    <?php 
+
+            <div class='col-span-6 content__left'>
+                <form class='form__search'>
+                    <p>Danh sách sinh viên</p>
+                    <input type="text" class='search__input' name="search" placeholder="Search..">
+                    <select class="sort__input" name="sort">
+
+                        <option value="nameASC">Tăng dần theo tên</option>
+                        <option value="nameDESC">Giảm dần theo tên</option>
+                        <option value="markASC">Tăng dần theo điểm</option>
+                        <option value="markDESC">Giảm dần theo điểm</option>
+                    </select>
+                </form>
+                <div>
+                    <table class="table__students">
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Sinh viên</th>
+                            <th>Email</th>
+                            <th>Điểm số</th>
+                            <th>Thời gian làm bài</th>
+                        </tr>
+                        <?php 
                         require '../../config.php';
                         $maBKT=$_GET['maBKT'];
                         // $maBKT='BKT32444';
@@ -69,12 +70,12 @@
                         }
                         $conn->close();
                     ?>
-                 
-                </table>
+
+                    </table>
+                </div>
             </div>
-          </div>
-          <div class='col-span-2 content__right'>
-            <?php 
+            <div class='col-span-2 content__right'>
+                <?php 
                 require '../../config.php';
                 if(isset($_POST['submit'])){
                     $maBKT=$_GET['maBKT'];
@@ -85,24 +86,41 @@
                     $timeStart=$_POST['timeStart'];
                     $timeEnd=$_POST['timeEnd'];
                     $success='';
-                    echo $timeStart ."<br>";
-                    echo $timeEnd;
-                    if($timeStart <$timeEnd){
-                        echo 'a';
-                    }
-                    // $sql="UPDATE bai_kiem_tra SET tenBKT ='$tenBKT', matKhauBKT='$matKhauBKT', thoiGian='$time', thoiGianBatDau='$timeStart', thoiGianKetThuc='$timeEnd' where maBKT like '$maBKT'";
-                   
-                    // $result=mysqli_query($conn,$sql);
-                    // if($result){
-                    //     $success='Cập nhật thành công!';
-                    // }
+                    // echo $timeStart ."<br>";
+                    // echo $timeEnd ."<br>";
+                    $timeStart2=substr($timeStart,11,5);
+                    $timeEnd2=substr($timeEnd,11,5);
+                    // echo $timeStart2 ."<br>";
+                    // echo $timeEnd2 ."<br>";
+                    $newTime=substr($time,0,2);
+                    $res=strtotime ( "+$newTime minute" , strtotime ( $timeStart2) ) ;
                     
+                   $res= date('H:i', $res);
+                   
+                    //    echo $res.'<br>';
+                    if(strtotime(substr($timeStart,0,10))<strtotime(substr($timeEnd,0,10))){
+                        $sql="UPDATE bai_kiem_tra SET tenBKT ='$tenBKT', matKhauBKT='$matKhauBKT', thoiGian='$time', thoiGianBatDau='$timeStart', thoiGianKetThuc='$timeEnd' where maBKT like '$maBKT'";
+            
+                        $result=mysqli_query($conn,$sql);
+                        if($result){
+                            $success='Cập nhật thành công!';
+                        }
+                    }
+                    else if(strtotime($res)<=strtotime($timeEnd2)){
+                            $sql="UPDATE bai_kiem_tra SET tenBKT ='$tenBKT', matKhauBKT='$matKhauBKT', thoiGian='$time', thoiGianBatDau='$timeStart', thoiGianKetThuc='$timeEnd' where maBKT like '$maBKT'";
+            
+                            $result=mysqli_query($conn,$sql);
+                            if($result){
+                                $success='Cập nhật thành công!';
+                            }
+                     }      
+                     else $success= "Thời gian chưa hợp lệ";     
                 }
                 $conn->close();
             ?>
-            <form action="" method="post" id='form__test' name='form__test' class='form__test'>
-                <p>Thông tin bài kiểm tra</p>
-                <?php 
+                <form action="" method="post" id='form__test' name='form__test' class='form__test'>
+                    <p>Thông tin bài kiểm tra</p>
+                    <?php 
                     require '../../config.php';
                      $maBKT=$_GET['maBKT'];
                    
@@ -128,15 +146,17 @@
                             <label>Thời gian đóng</label>
                             <input type='datetime-local' name='timeEnd' require value='".$tempEnd."' readonly>
                          "
-                ?>    
-                <button type="button">Chỉnh sửa thông tin</button>
-            </form>
-          </div>
-         
+                ?>
+                    <button type="button">Chỉnh sửa thông tin</button>
+                </form>
+            </div>
+
         </div>
     </section>
     <?php require '../footer/index.php'?>
 </body>
 <script type="text/javascript" src='../js/SearchDetailTest.js'></script>
 <script type="text/javascript" src='../js/settingTestPage.js'></script>
+<script type="text/javascript" src='../js/clock.js'> </script>
+
 </html>

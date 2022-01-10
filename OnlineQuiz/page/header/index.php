@@ -21,9 +21,20 @@
         <div class="title__date ml-2  pt-2 inline-block" id='text__clock'>
             Thứ 4 ngày 20 tháng 11, 08:11
         </div>
-        <div class="title__search inline-block w-96 h-8 mt-1">
-            <input class="search__input h-8" type="text" placeholder="Nhập từ bạn cần tìm" />
-        </div>
+        <?php 
+                // require '../../config.php';
+                // $textSearch= $_POST['text']??'';
+                // $sql="SELECT * FROM bai_kiem_tra where tenBKT like '%$textSearch%'";
+                // $result= mysqli_query($conn,$sql);
+                // $row=mysqli_fetch_array($result);
+                // if($result){
+                //     header('Location: localhost/onlineQuiz/page/');
+                // }
+        ?>
+        <form class="title__search inline-block w-96 h-8 mt-1" action='' method="post">
+
+            <input class="search__input h-8" name='text' type="text" placeholder="Nhập từ bạn cần tìm" />
+        </form>
         <div class="inline-block divide-x divide-green-500 mr-14 mt-2">
 
             <?php
@@ -60,19 +71,19 @@
             </li>
             <li class="menu-item">
                 <a href="#0">Tài Liệu</a>
-                <ol class="sub-menu">
+                <!-- <ol class="sub-menu">
                     <li class="menu-item"><a href="#0">Tài Liệu 1</a></li>
                     <li class="menu-item"><a href="#0">Tài Liệu 2</a></li>
                     <li class="menu-item"><a href="#0">Tài Liệu 3</a></li>
-                </ol>
+                </ol> -->
             </li>
             <li class="menu-item">
                 <a href="../listTest">Bài kiểm tra</a>
-                <ol class="sub-menu">
+                <!-- <ol class="sub-menu">
                     <li class="menu-item"><a href="#0">Lớp 10</a></li>
                     <li class="menu-item"><a href="#0">Lớp 11</a></li>
                     <li class="menu-item"><a href="#0">Lớp 12</a></li>
-                </ol>
+                </ol> -->
             </li>
             <li class="menu-item"><a href="../selfPage/">Cá nhân</a></li>
         </ol>

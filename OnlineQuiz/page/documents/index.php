@@ -180,6 +180,7 @@
         </div>
     </main>
     <?php require "../footer/index.php" ?>
+    <script type="text/javascript" src='../js/clock.js'> </script>
 </body>
 
 </html>

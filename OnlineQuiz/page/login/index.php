@@ -45,7 +45,7 @@ session_start();
                 header('Location: /onlineQuiz/page/home');
             } else {
                 // Phần này hoàn thành sau
-                // header('Location: /homestay/Admin/ad_acccounts/Admins.php');
+                // header('Location: /onlineQuiz/Admin/ad_acccounts/Admins.php');
             }
         } else
             $error = 'Tên Đăng nhập hoặc mật khẩu không đúng';

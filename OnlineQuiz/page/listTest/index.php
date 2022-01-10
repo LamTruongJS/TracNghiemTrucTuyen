@@ -25,7 +25,7 @@
             <!-- Search -->
             <div class='min-w-full border-r border-green-600'>
                 <div class='min-w-full flex flex-col justify-start items-start content__test__left'>
-                <?php 
+                    <?php 
                    
                     $email= $_SESSION['email'];
                     if (!isset($_SESSION['email'])) {
@@ -38,8 +38,8 @@
                     echo "<span class='left__name'>Xin chào, ".$row['tenUser']." </span>";
                             
                     
-                ?>   
-                
+                ?>
+
                     <div class='left__search'>
                         <input type='text' placeholder='Bạn cần tìm gì ?' />
                     </div>
@@ -150,10 +150,12 @@
                 </div>
             </div>
         </div>
-     
+
     </main>
     <?php require '../footer/index.php' ?>
     <script type="text/javascript" src='../js/setStatusListTest.js'></script>
+    <script type="text/javascript" src='../js/clock.js'> </script>
+    <script type="text/javascript" src='../js/SearchOfListTest.js'></script>
 </body>
 
 </html>

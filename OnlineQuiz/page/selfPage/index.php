@@ -68,7 +68,7 @@
                             $conn->close();
                             ?>
                         </div>
-                            <div class='swiper-pagination'></div>
+                        <div class='swiper-pagination'></div>
                     </div>
                 </div>
                 <!-- Phần 2 -->
@@ -76,7 +76,7 @@
                     <p>Bài kiểm tra đã tạo</p>
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                                <?php 
+                            <?php 
                                 require '../../config.php';
                                 $email= $_SESSION['email'];
                                 //lấy ra mã user
@@ -115,17 +115,17 @@
                                 }
                                 $conn->close();
                                 ?>
-                               
-                          
+
+
                         </div>
                         <div class="swiper-pagination text-green-500"></div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-span-2 border content__right">
                 <p>Thông tin cá nhân</p>
-                                
+
                 <div>
                     <?php
                         require '../../config.php';
@@ -204,11 +204,12 @@
             </div>
         </div>
     </section>
-   <?php require '../footer/index.php' ?>
+    <?php require '../footer/index.php' ?>
 </body>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script type="text/javascript" src="../js/slider.js"></script>
 <script type="text/javascript" src="../js/settingUserPage.js"></script>
 <script type="text/javascript" src="../js/setStatusSelfTest.js"></script>
+<script type="text/javascript" src='../js/clock.js'> </script>
 
 </html>

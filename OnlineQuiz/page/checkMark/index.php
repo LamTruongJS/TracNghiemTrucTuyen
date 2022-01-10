@@ -95,12 +95,13 @@
                 echo "<p>Điểm của bạn: $currentMark điểm</p>";
             ?>
             <div>
-                <button name='submit' type='button' class='border'><a class='min-w-full min-h-full' href='../listTest'>Tiếp tục</a></button>
+                <button name='submit' type='button' class='border'><a class='min-w-full min-h-full'
+                        href='../listTest'>Tiếp tục</a></button>
             </div>
         </form>
     </section>
 
-
+    <script type="text/javascript" src='../js/clock.js'> </script>
 </body>
 
 </html>
