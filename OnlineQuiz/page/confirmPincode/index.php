@@ -17,7 +17,7 @@ $password=$_SESSION['password'];
 $errPINCode='';
 if (isset($_POST['forgotpassword'])) {
   $PIN =$_POST['PIN']??'';
-  echo $PIN;
+  
   include '../../config.php';
   if($PIN!='' && $PIN==$_SESSION['PINCode']){
       $sql = "UPDATE user u SET u.matKhau ='$password' where u.email = '$email'";
@@ -28,7 +28,7 @@ if (isset($_POST['forgotpassword'])) {
     }
     else{
       $errPINCode ="mã xác nhận ko chính xác";
-      echo $errPINCode;
+     
       
     }
   }

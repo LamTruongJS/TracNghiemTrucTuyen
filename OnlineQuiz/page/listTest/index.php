@@ -25,7 +25,21 @@
             <!-- Search -->
             <div class='min-w-full border-r border-green-600'>
                 <div class='min-w-full flex flex-col justify-start items-start content__test__left'>
-                    <span class='left__name'>Xin Chào, Lê Lâm Trường</span>
+                <?php 
+                   
+                    $email= $_SESSION['email'];
+                    if (!isset($_SESSION['email'])) {
+                        header('Location: /onlineQuiz/page/login');
+                    }
+                    require '../../config.php';
+                    $sql="SELECT * FROM user where email like '$email'";
+                    $result= mysqli_query($conn,$sql);
+                    $row=mysqli_fetch_array($result);
+                    echo "<span class='left__name'>Xin chào, ".$row['tenUser']." </span>";
+                            
+                    
+                ?>   
+                
                     <div class='left__search'>
                         <input type='text' placeholder='Bạn cần tìm gì ?' />
                     </div>
@@ -92,23 +106,54 @@
             <!-- end search -->
             <div class='col-span-5 container min-w-full mt-6 ml-6'>
                 <p class='text-center text-xl text-green-600 mb-4'>Danh sách bài kiểm tra </p>
-                <div class=' grid grid-cols-3 gap-4 '>
+                <div class='grid grid-cols-3 gap-4 '>
                     <?php require '../../config.php';
                         $sql="SELECT * FROM bai_kiem_tra";
                         $result= mysqli_query($conn,$sql);
+
+                        //lấy ra mã bài kiểm tra đã làm
+                        $email= $_SESSION['email'];
+                        $sql2="SELECT * FROM user WHERE email like '$email'";
+                        $result2=mysqli_query($conn,$sql2);
+                        $row2=mysqli_fetch_array($result2);
+                        $maUser = $row2['maUser'];
+
+                        $sql3="SELECT maBKT FROM ket_qua WHERE maUser like '$maUser'";
+                        $result3=mysqli_query($conn,$sql3);
+                        $arrayBKT=array();
+                        for($j=0;$j<$result3->num_rows;$j++){
+                            $row3=mysqli_fetch_array($result3);
+                            array_push($arrayBKT,$row3['maBKT']);
+                        }
                         for($i=0;$i<$result->num_rows;$i++){
                             $row=mysqli_fetch_array($result);
-                            echo " <a class='content__test__item border' href='../test?maBKT=". $row['maBKT']."'>
-                            <p class='text-red-600 text-center'>Tên Đề: ".$row['tenBKT']."</p>
-                            <p class='mb-1'><span class='border-b-2 border-green-500'>Tác giả:</span> Lê Lâm Trường</p>
-                            <p><span class='border-b-2 border-green-500'>Mô tả: </span>".$row['moTa']."</p> </a>";
+                            $maUser = $row['maUser'];
+                            $sql4= "SELECT * FROM user where maUser like '$maUser'";
+                            $result4=mysqli_query($conn,$sql4);
+                            $row4=mysqli_fetch_array($result4);
+                            $userName = $row4['tenUser'];
+                            if(in_array($row['maBKT'],$arrayBKT)==false){
+                                echo " <a class='content__test__item border' href='../confirmPassTest?maBKT=". $row['maBKT']."'>     
+                                <p class='item__key' style='display:none'>".$row['maBKT']."</p>
+                                <p class='item-name text-red-600 text-center'>Tên Đề: ".$row['tenBKT']."</p>
+                                <p class='mb-1'><span class='border-b-2 border-green-500'>Tác giả:</span>&ensp;$userName</p>
+                                <p><span class='border-b-2 border-green-500'>Mô tả:</span>&ensp;".$row['moTa']."</p>
+                                <p class='startTime' style='display:none'>".$row['thoiGianBatDau']."</p>
+                                <p class='endTime' style='display:none'>".$row['thoiGianKetThuc']."</p>
+                                <p class='status'></p>
+                                </a>";
+                                
+                            }
                         }
+                        $conn->close();
                     ?>
                 </div>
             </div>
         </div>
+     
     </main>
     <?php require '../footer/index.php' ?>
+    <script type="text/javascript" src='../js/setStatusListTest.js'></script>
 </body>
 
 </html>

@@ -22,6 +22,16 @@
     <?php require "../header/index.php"?>
     <?php 
         require '../../config.php';
+        // date_default_timezone_set("America/New_York");
+        // $date = date("Y-m-d h:i a");
+        // echo $date;
+        $email=$_SESSION['email'];
+        $sql0="SELECT * FROM user where email like '$email'";
+        $result0=mysqli_query($conn,$sql0);
+        $row0=mysqli_fetch_array($result0);
+        $userID = $row0['maUser'];
+        
+        $err='';
         if(isset($_POST['done'])){
             $nameTest=$_POST['nameTest']??'';
             $passTest=$_POST['passTest']??'';
@@ -30,17 +40,29 @@
             $timeStart=$_POST['timeStart']??'';
             $timeEnd=$_POST['timeEnd']??'';
             $description=$_POST['description']??'';
-            $maBKT='BKT'.rand(0,9).rand(0,9).rand(0,9);
+           
             $sqlMBKT='SELECT * FROM bai_kiem_tra';
             $resultMBKT= mysqli_query($conn, $sqlMBKT);
-            $row=mysqli_fetch_array($resultMBKT);
-            while(strcmp($maBKT,$row['maBKT'])==0){
-             $maBKT='BKT'.rand(0,9).rand(0,9).rand(0,9);
+            $maBKT='BKT'.rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+            $tempBKT=[];
+            for($k=0;$k<$resultMBKT->num_rows;$k++){
+                $row = mysqli_fetch_array($resultMBKT);
+                array_push($tempBKT,$row['maBKT']);
             }
-            $sql1="INSERT INTO bai_kiem_tra VALUES ('$maBKT','$nameTest','$passTest','$description','$timeTest','$timeStart','$timeEnd')";
-            $result1=mysqli_query($conn,$sql1);
-            if($result1){
-                header("Location: /OnlineQuiz/page/question?maBKT=$maBKT");                
+            while (in_array($maBKT,$tempBKT)) {
+              $maBKT='BKT'.rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+            };
+          
+
+            if(strtotime($timeStart) < strtotime($timeEnd)){
+                $sql1="INSERT INTO bai_kiem_tra values ('$maBKT','$nameTest','$passTest','$description','$timeTest','$timeStart','$timeEnd','$userID')";
+                $result1 = mysqli_query($conn, $sql1);
+                if($result1){
+                    header("Location: /onlineQuiz/page/question?maBKT=$maBKT"); 
+                 }  
+            } 
+            else {
+                  $err='Thời gian chưa hợp lệ';      
             }
         }
     ?>
@@ -50,11 +72,11 @@
                 <table class=''>
                     <tr>
                         <td>Tên bài kiểm tra</td>
-                        <td><input name='nameTest' type='text' require></td>
+                        <td><input name='nameTest' type='text' value="<?php if(isset($_POST['nameTest'])) echo $_POST['nameTest'];  ?>" require></td>
                     </tr>
                     <tr>
                         <td>Mật khẩu</td>
-                        <td><input name='passTest' type='password' require></td>
+                        <td><input name='passTest' type='password' value="<?php if(isset($_POST['passTest'])) echo $_POST['passTest'];  ?>" require></td>
                     </tr>
                     <!-- <tr>
                         <td>Tổng số đề</td>
@@ -65,27 +87,37 @@
                     <tr>
                         <td>Thời gian làm bài</td>
                         <td>
-                            <input name='timeTest' type='number' placeholder='phút' min='1' require>
+                            <input name='timeTest' type='number' placeholder='phút' min='1' value="<?php if(isset($_POST['timeTest'])) echo $_POST['timeTest'];  ?>" require>
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu</td>
                         <td>
-                            <input name='timeStart' type="datetime-local" name="meeting-time" value="2021-06-12T19:30"
-                                min="2021-06-07T00:00" max="2021-07-07T00:00">
+                            <input name='timeStart' class='timeStart' type="datetime-local" value="<?php if(isset($_POST['timeStart'])) echo $_POST['timeStart']; else echo "2022-01-01T00:00"  ?>"
+                                min="2022-01-01T00:00" max="2022-02-01T00:00">
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian kết thúc</td>
                         <td>
-                            <input name='timeEnd' type="datetime-local" name="meeting-time" value="2021-06-12T19:30"
-                                min="2021-06-07T00:00" max="2021-07-07T00:00">
+                            <input name='timeEnd' type="datetime-local" value="<?php if(isset($_POST['timeEnd'])) echo $_POST['timeEnd']; else echo "2022-01-01T00:00"  ?>"
+                                min="2022-01-01T00:00" max="2022-02-01T00:00">
                         </td>
                     </tr>
+                    <?php 
+                        if($err!=''){
+                            echo "<tr>
+                                    <td></td>
+                                    <td style='color:red'>
+                                    $err
+                                    </td>
+                                </tr>";
+                        }
+                    ?>
                     <tr>
                         <td>Tô tả</td>
                         <td>
-                            <textarea name='description' class='min-w-full' require></textarea>
+                            <textarea name='description' class='min-w-full'  require><?php if(isset($_POST['description'])) echo $_POST['description'];  ?></textarea>
                         </td>
                     </tr>
                     <tr>

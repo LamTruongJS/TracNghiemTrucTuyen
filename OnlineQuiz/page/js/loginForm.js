@@ -1,5 +1,7 @@
-const userName = document.querySelector('.form__login__username--input');
-const userNameTitle = document.querySelector('.form__login__username--title');
+const $=document.querySelector.bind(document);
+
+const userName = $('.form__login__username--input');
+const userNameTitle = $('.form__login__username--title');
 userNameTitle.classList.add('form__login__username--title--acive');
 console.log(userName.value);
 if (userName.value != '') {
@@ -14,8 +16,8 @@ userName.addEventListener('blur', () => {
   }
 });
 
-const password = document.querySelector('.form__login__password--input');
-const passwordTitle = document.querySelector('.form__login__password--title');
+const password = $('.form__login__password--input');
+const passwordTitle = $('.form__login__password--title');
 passwordTitle.classList.add('form__login__password--title--acive');
 if (password.value != '') {
   passwordTitle.classList.remove('form__login__password--title--acive');
@@ -29,9 +31,9 @@ password.addEventListener('blur', () => {
   }
 });
 
-const eyesContainer = document.querySelector('.form__login__password__icon');
-const eyes = document.querySelector('.eyes_password');
-const eyesHidden = document.querySelector('.eyesHidden_password');
+const eyesContainer = $('.form__login__password__icon');
+const eyes = $('.eyes_password');
+const eyesHidden = $('.eyesHidden_password');
 var flat = true;
 eyesContainer.addEventListener('click', () => {
   flat = !flat;

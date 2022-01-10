@@ -1,6 +1,7 @@
 (() => {
-  const time = document.getElementById("time__test").innerText;
-  const timeCount = document.getElementById("time__count");
+  const $id= document.getElementById.bind(document);
+  const time = $id("time__test").innerText;
+  const timeCount = $id("time__count");
   let timeSum = time * 60;
   setInterval(() => {
     timeSum -= 1;

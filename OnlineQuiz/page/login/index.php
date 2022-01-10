@@ -78,7 +78,7 @@ session_start();
             <?php if (isset($error)) echo "<p class='mess_er'>$error</p>";
             else echo '' ?>
             <input <?php if (isset($_COOKIE['remember'])) echo $_COOKIE['remember'] ? 'checked' : '' ?>
-                class="remember-account" type="checkbox" name="remember" />Lưu tài khoảng
+                class="remember-account" type="checkbox" name="remember" />Lưu tài khoản
             <a class='forgotPassword' href="../forgotPassword/">Quên Mật Khẩu</a>
 
             <button class="form__login__btn" type="submit" name="login" value="">Đăng Nhập</button>

@@ -41,8 +41,8 @@
                 <button name='submit' id='submit'
                     class="border border-blue-500 p-2 rounded-lg hover:bg-blue-500 hover:text-white transition-all"
                     type="submit">Hoàn tất bộ đề</button>
-                <input style="" type='text' id='countData' name='countData' />
-
+                <input style="display:none" type='text' id='countData' name='countData' />
+                <input style='display:none' type='text' name='maBKT' value="<?php echo $_GET['maBKT']?>" />
             </div>
             <span class='absolute right-12 top-2 text-2xl text-blue-900'>Tổng số câu hỏi: <p class='inline'
                     id='countQuestion'>...</p>
@@ -86,7 +86,7 @@
                             <td>Đáp án đúng</td>
                             <td>
                                 <select name='resultTRUE'>
-                                    <option value="A">Đáp án 1</option>
+                                    <option value="A" selected >Đáp án 1</option>
                                     <option value="B">Đáp án 2</option>
                                     <option value="C">Đáp án 3</option>
                                     <option value="D">Đáp án 4</option>

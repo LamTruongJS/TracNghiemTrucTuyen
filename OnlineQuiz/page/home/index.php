@@ -38,8 +38,8 @@
                     Nền tảng tạo đề thi online trong giáo dục
                 </div>
                 <div class='mt-10 ml-6'>
-                    <button type='button' class='rounded-3xl border p-2 px-4 bg-green-600 text-white ring-2 text-2xl'>
-                        Đăng ký ngay </button>
+                    <button type='button' class='animate-bounce rounded-3xl border p-2 px-4 bg-green-600 text-white ring-2 text-2xl'>
+                        Xin Chào Bạn </button>
                 </div>
             </div>
         </div>
@@ -74,14 +74,29 @@
                     <div class='border-b-4 border-green-700 w-24 mt-2'></div>
                 </div>
                 <div class='grid grid-cols-3 gap-3 mx-36 mt-2'>
-                    <div class=' three__item'>
-                        <img src='../../image/member-1.png'>
-                        <div>10.000<br>Tài khoản</div>
-                    </div>
-                    <div class=' three__item'>
-                        <img src='../../image/exam-1.png'>
-                        <div>10.000<br>Đề thi</div>
-                    </div>
+                    <?php 
+                        require '../../config.php';
+                        $sql='SELECT * FROM user';
+                        $result =mysqli_query($conn,$sql);
+                        $numUser= $result->num_rows;
+                        echo " <div class=' three__item'>
+                                    <img src='../../image/member-1.png'>
+                                    <div>$numUser<br>Tài khoản</div>
+                                </div>";
+                        $conn->close();
+                    ?>
+                     <?php 
+                        require '../../config.php';
+                        $sql='SELECT * FROM bai_kiem_tra';
+                        $result =mysqli_query($conn,$sql);
+                        $numTest= $result->num_rows;
+                        echo " <div class=' three__item'>
+                                    <img src='../../image/exam-1.png'>
+                                    <div>$numTest<br>Bài thi</div>
+                                </div>";
+                        $conn->close();
+                    ?>
+                 
                     <div class=' three__item'>
                         <img src='../../image/website-1.png'>
                         <div>10.000<br>Tài liệu</div>

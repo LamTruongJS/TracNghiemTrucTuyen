@@ -21,50 +21,54 @@
 <body>
     <?php require "../header/index.php" ?>
 
-    <main class='container min-h-full grid grid-cols-5 min-w-full main__test'>
+    <form action="../checkMark/index.php" method='POST' name='form_time' id='form_time' class='container min-h-full grid grid-cols-5 min-w-full main__test'>
         <div class='col-span-4 min-h-full container__test'>
             <?php require "../../config.php"; 
-            $maBKT=$_GET['maBKT'];
-            $sql="SELECT * FROM cau_hoi where maBKT like '$maBKT'";
-            $result= mysqli_query($conn, $sql);
-            for($i=1;$i<=$result->num_rows;$i++) {
-                $row=mysqli_fetch_array($result);
-                $maCauHoi=$row['maCauHoi'];
-                echo "<div class='test__item mt-6' id='test$i'>";
-                echo "<p><b>Câu $i: </b>".$row['noiDung']."</p>";
-                echo '<form action="#">';
-                $sql1="SELECT * FROM dap_an WHERE maCauHoi like '$maCauHoi'";
-                $result1=mysqli_query($conn,$sql1);
-                for($j=0;$j<$result1->num_rows;$j++){  
-                    $res='A';
-                    switch($j){
-                        case 0: $res='A'; break;
-                        case 1: $res='B'; break;
-                        case 2: $res='C'; break;
-                        case 3: $res='D'; break;
-                        default: $res='A';
-                    } 
-                    $row1=mysqli_fetch_array($result1);
-                    echo "<p>
-                            <input type='radio' id='".$row1['maDA']."' name='radio-group'>
-                            <label for='".$row1['maDA']."'>$res. ".$row1['noiDung']."</label>
-                        </p>";
-                }
-            echo "</form></div>";   
-        }
-        $conn->close();
-    ?>
+                $maBKT=$_GET['maBKT'];
+                $sql="SELECT * FROM cau_hoi where maBKT like '$maBKT'";
+                $result= mysqli_query($conn, $sql);
+                for($i=1;$i<=$result->num_rows;$i++) {
+                    $row=mysqli_fetch_array($result);
+                    $maCauHoi=$row['maCauHoi'];
+                    echo "<div class='test__item mt-6' id='test$i'>";
+                    echo "<p><b>Câu $i: </b>".$row['noiDung']."</p>";
+                    echo '<div>';
+                    echo " <input style='display:none' value='$maCauHoi' name='maCauHoi".$i."' />
+                            <input style='display:none' value='$maBKT' name='maBKT'/>";
+                    $sql1="SELECT * FROM dap_an WHERE maCauHoi like '$maCauHoi'";
+                    $result1=mysqli_query($conn,$sql1);
+                    for($j=0;$j<$result1->num_rows;$j++){  
+                        $res='A';
+                        switch($j){
+                            case 0: $res='A'; break;
+                            case 1: $res='B'; break;
+                            case 2: $res='C'; break;
+                            case 3: $res='D'; break;
+                            default: $res='A';
+                        } 
+                        $row1=mysqli_fetch_array($result1);
+                        echo "<p>
+                               
+                                <input type='radio' id='".$row1['maDA']."' name='radio-group".$i."' value='".$row1['maDA']."'>
+                                <label for='".$row1['maDA']."'>$res. ".$row1['noiDung']."</label>
+                            </p>";
+                    }
+                    echo "</div></div>";   
+                    }
+                    $conn->close();
+                ?>
         </div>
         <div class='col-span-1 border rounded-2xl border-green-700 p-2 container__list bg-white'>
             <p class='text-lg inline-block border-b border-green-700'>Mã đề: 2291 </p>
-            <a href='#' class='border p-2 border-red-600 hover:bg-red-500 hover:text-white float-right rounded-xl'>Nộp
-                bài</a>
+            <button type='submit' class='border p-2 border-red-600 hover:bg-red-500 hover:text-white float-right rounded-xl'>Nộp
+                bài</button>
             <?php require '../../config.php';
                 $maBKT=$_GET['maBKT'];
                 $sql="SELECT * FROM bai_kiem_tra where maBKT like '$maBKT'";
                 $result=mysqli_query($conn,$sql);
                 $row=mysqli_fetch_array($result);
                 echo " <p class='mt-4'>Thời gian làm bài <span id='time__test'>".$row['thoiGian']."</span> phút</p>";
+              
                 $conn->close();
            ?>
 
@@ -80,18 +84,18 @@
                 ?>
             </div>
             <?php require '../../config.php';
-            $maBKT=$_GET['maBKT'];
-            $sql="SELECT * FROM bai_kiem_tra where maBKT like '$maBKT'";
-            $result=mysqli_query($conn,$sql);
-            $row=mysqli_fetch_array($result);
-            echo "<div class='list__time mt-2'>Thời gian còn lại: <span id='time__count'>".$row['thoiGian']." phút</span></div>";
-            $conn->close();
+                $maBKT=$_GET['maBKT'];
+                $sql="SELECT * FROM bai_kiem_tra where maBKT like '$maBKT'";
+                $result=mysqli_query($conn,$sql);
+                $row=mysqli_fetch_array($result);
+                echo "<div class='list__time mt-2'>Thời gian còn lại: <span id='time__count'>".$row['thoiGian']." phút</span></div>";
+                $conn->close();
            ?>
         </div>
-    </main>
+    </form>
     <?php require "../footer/index.php" ?>
 </body>
-<script type='text/javascript' src='../js/TagetAnswer.js'></script>
+<script type="text/javascript" src='../js/CheckDeadlineTest.js'></script>
 <script type='text/javascript' src='../js/CountTimeTest.js'></script>
 
 </html>

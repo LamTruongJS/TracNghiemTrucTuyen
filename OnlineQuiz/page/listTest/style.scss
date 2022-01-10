@@ -85,6 +85,7 @@
   border-radius: 1rem;
   line-height: 1.6;
   letter-spacing: 1px;
+  position: relative;
   p:last-child {
     width: 100%;
     font-size: 14px;
@@ -94,4 +95,72 @@
     -webkit-box-orient: vertical;
     display: -webkit-box;
   }
+  .status{
+    color:red;
+    font-size:16px;
+    position:absolute;
+    bottom:5px;
+    right:5px;
+    text-align:right;
+    padding-right: 10px;
+  }
+}
+.form__pass{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+  display:none;
+ form{
+  position:absolute;
+  top:30%;
+  left:40%;
+  padding:1rem;
+  background-color: #fff;
+  box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 20%);
+  border: 3px solid #26ba99;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  width:18rem;
+  height:10rem;
+
+  animation: modelFadeIn ease-in-out 0.6s;
+
+  @keyframes modelFadeIn {
+    from {
+      transform: translateY(-140px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  label{
+    font-size:16px;
+    margin-bottom: 0.5rem;
+    color:#26ba99;
+  }
+  input{
+    border-radius:5rem;
+    outline-style:none;
+    padding: 0.1rem 0.5rem;
+    font-size:15px;
+  }
+  p{
+    font-size:15px;
+    margin:1rem;
+    color:red;
+   
+  }
+
+ }
+}
+.active{
+ display:block !important;
 }

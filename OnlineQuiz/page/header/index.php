@@ -15,8 +15,8 @@
 </head>
 
 <body>
-    
-  
+
+
     <nav class="title container min-w-full h-10 flex justify-between">
         <div class="title__date ml-2  pt-2 inline-block" id='text__clock'>
             Thứ 4 ngày 20 tháng 11, 08:11
@@ -25,19 +25,19 @@
             <input class="search__input h-8" type="text" placeholder="Nhập từ bạn cần tìm" />
         </div>
         <div class="inline-block divide-x divide-green-500 mr-14 mt-2">
-            
-            <?php 
-            session_start();
-            $email= $_SESSION['email'];
-            if (!isset($_SESSION['email'])) {
-                header('Location: /onlineQuiz/page/login');
-            }
-            require '../../config.php';
-            $sql="SELECT * FROM user where email like '$email'";
-            $result= mysqli_query($conn,$sql);
-            $row=mysqli_fetch_array($result);
-            echo "<button type='button' class='mr-2 hover:text-green-500'>
-                    <a href='#'>".$row['tenUser']."</a></button>";
+
+            <?php
+                session_start();
+                $email = $_SESSION['email'];
+                if (!isset($_SESSION['email'])) {
+                    header('Location: /onlineQuiz/page/login');
+                }
+                require '../../config.php';
+                $sql = "SELECT * FROM user where email like '$email'";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_array($result);
+                echo "<button type='button' class='mr-2 hover:text-green-500'>
+                        <a href='../selfPage'>" . $row['tenUser'] . "</a></button>";
 
             ?>
             <button type="button" class="pl-2 hover:text-green-500">
@@ -50,13 +50,13 @@
             <li class="menu-item">
                 <img src="../../image/logo.png" class="h-14" />
             </li>
-            <li class="menu-item"><a href="#0">Trang Chủ</a></li>
+            <li class="menu-item"><a href="../home/">Trang Chủ</a></li>
             <li class="menu-item">
-                <a href="#0">Giải trí</a>
-                <ol class="sub-menu">
+                <a href="../createQuiz">Tạo bài</a>
+                <!-- <ol class="sub-menu">
                     <li class="menu-item"><a href="#0">Game 1</a></li>
                     <li class="menu-item"><a href="#0">Game 2</a></li>
-                </ol>
+                </ol> -->
             </li>
             <li class="menu-item">
                 <a href="#0">Tài Liệu</a>
@@ -74,7 +74,7 @@
                     <li class="menu-item"><a href="#0">Lớp 12</a></li>
                 </ol>
             </li>
-            <li class="menu-item"><a href="#0">Cá nhân</a></li>
+            <li class="menu-item"><a href="../selfPage/">Cá nhân</a></li>
         </ol>
     </nav>
 </body>

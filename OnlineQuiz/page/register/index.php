@@ -29,12 +29,16 @@ if (isset($_POST['register'])) {
     $errEmail = "Email đã tồn tại !";
   }
   if($num_rowsEmail == 0 && $password === $confirm_password) {
-    $index='ID'.rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+    $index='ID'.rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
     $sqlID = "SELECT maUser FROM user";
     $resultID = mysqli_query($conn, $sqlID);
-    $row = mysqli_fetch_array($resultID);
-    while (strcmp($index, $row['maUser']) == 0) {
-      $index='ID'.rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+    $tempID=[];
+    for($h=0;$h<$resultID->num_rows;$h++) {
+      $row = mysqli_fetch_array($resultID);
+      array_push($tempID,$row['maUser']);
+    }
+    while (in_array($index,$tempID)) {
+      $index='ID'.rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
     }
     $sql = "INSERT INTO user values('$index','$username','$password','$email','user')";
     $result = mysqli_query($conn, $sql);

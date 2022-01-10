@@ -1,7 +1,10 @@
 
 // animation username
-const email = document.querySelector('.form__register__email--input');
-const emailTitle = document.querySelector('.form__register__email--title');
+const $= document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
+
+const email =$('.form__register__email--input');
+const emailTitle =$('.form__register__email--title');
 emailTitle.classList.add('form__register__email--title--acive');
 if (email.value != '') {
   emailTitle.classList.remove('form__register__email--title--acive');
@@ -15,8 +18,8 @@ email.addEventListener('blur', () => {
   }
 });
 //anmition password
-const password = document.querySelector('.form__register__password--input');
-const passwordTitle = document.querySelector('.form__register__password--title');
+const password =$('.form__register__password--input');
+const passwordTitle =$('.form__register__password--title');
 passwordTitle.classList.add('form__register__password--title--acive');
 if (password.value != '') {
   passwordTitle.classList.remove('form__register__password--title--acive');
@@ -31,8 +34,8 @@ password.addEventListener('blur', () => {
 });
 
 //animation confirm_password
-const confirm_password = document.querySelector('.form__register__confirm__password--input');
-const confirm_passwordTitle = document.querySelector('.form__register__confirm__password--title');
+const confirm_password =$('.form__register__confirm__password--input');
+const confirm_passwordTitle =$('.form__register__confirm__password--title');
 confirm_passwordTitle.classList.add('form__register__confirm__password--title--acive');
 if (confirm_password.value != '') {
   confirm_passwordTitle.classList.remove('form__register__confirm__password--title--acive');
@@ -47,9 +50,9 @@ confirm_password.addEventListener('blur', () => {
 });
 
 // ẩn hiện password
-const eyesContainer = document.querySelector('.form__register__password__icon');
-const eyes = document.querySelector('.eyes_password');
-const eyesHidden = document.querySelector('.eyesHidden_password');
+const eyesContainer =$('.form__register__password__icon');
+const eyes =$('.eyes_password');
+const eyesHidden =$('.eyesHidden_password');
 var flat = true;
 eyesContainer.addEventListener('click', () => {
   flat = !flat;
@@ -63,9 +66,9 @@ eyesContainer.addEventListener('click', () => {
 });
 
 //ẩn hiện confirm_password
-const eyesContainer_confirm = document.querySelector('.form__register__confirm__password__icon');
-const eyes_confirm = document.querySelector('.eyes_password_confirm');
-const eyesHidden_confirm = document.querySelector('.eyesHidden_password_confirm');
+const eyesContainer_confirm =$('.form__register__confirm__password__icon');
+const eyes_confirm =$('.eyes_password_confirm');
+const eyesHidden_confirm =$('.eyesHidden_password_confirm');
 var flat_confirm = true;
 eyesContainer_confirm.addEventListener('click', () => {
   flat_confirm = !flat_confirm;

@@ -4,7 +4,7 @@ if (isset($_POST['submit'])) {
 
     $count = $_POST['countData'];
     for ($n = 0; $n < $count; $n++) {
-        $maBKT = $_GET['maBKT'];
+        $maBKT = $_POST['maBKT'];
 
         $a = 'question' . $n;
         $b = 'ansOne' . $n;
@@ -22,54 +22,89 @@ if (isset($_POST['submit'])) {
 
         $sql = 'SELECT * FROM cau_hoi';
         $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_array($result);
         //câu hỏi
-        $maCauHoi = 'CH' . rand(0, 9) . rand(0, 9) . rand(0, 9);
-        while (strcmp($maCauHoi, $row['maCauHoi']) == 0) {
-            $maCauHoi = 'CH' . rand(0, 9) . rand(0, 9) . rand(0, 9);
-        }
+        $maCauHoi = 'CH' . rand(0, 9) . rand(0, 9) . rand(0, 9). rand(0, 9). rand(0, 9);
+            $tempCH=[];
+            for($k=0;$k<$result->num_rows;$k++){
+                $row = mysqli_fetch_array($result);
+                array_push($tempCH,$row['maCauHoi']);
+            }
+            while (in_array($maCauHoi,$tempCH)) {
+                $maCauHoi = 'CH' . rand(0, 9) . rand(0, 9) . rand(0, 9). rand(0, 9). rand(0, 9);
+            };
+     
         $sql1 = "INSERT INTO cau_hoi values('$maCauHoi','$question','$maBKT')";
+        
         $result1 = mysqli_query($conn, $sql1);
         //đáp án
-        $ans = ["A." . $ansOne, "B." . $ansTwo, "C." . $ansThree, "D." . $ansFour];
-        for ($i = 0; $i < 4; $i++) {
+        $ans = [$ansOne, $ansTwo,$ansThree,$ansFour];
+        for ($j = 0; $j < 4; $j++) {
             $sql2 = 'SELECT * FROM dap_an';
             $result2 = mysqli_query($conn, $sql2);
-            $row = mysqli_fetch_array($result2);
-            $maDA = 'DA' . rand(0, 9) . rand(0, 9) . rand(0, 9);
-            while (strcmp($maDA, $row['maDA']) == 0) {
-                $maDA = 'DA' . rand(0, 9) . rand(0, 9) . rand(0, 9);
+            $maDA = 'DA' . rand(0, 9) . rand(0, 9) . rand(0, 9). rand(0, 9). rand(0, 9);
+            $tempDA=[];
+            for($h=0;$h<$result2->num_rows;$h++){
+                $row2 = mysqli_fetch_array($result2);
+                array_push($tempDA,$row2['maDA']);
             }
-            ;
+            while (in_array($maDA,$tempDA)) {
+                $maDA = 'DA' . rand(0, 9) . rand(0, 9) . rand(0, 9). rand(0, 9). rand(0, 9);
+            };
             $res = 0;
-            switch ($i) {
+            switch ($j) {
                 case 0: {
-                        if ($resultTRUE == "A") {
+                        if (strcmp($resultTRUE,"A")==0) {
                             $res = 1;
+                        }
+                        else{
+                            $res=0;
                         }
                     }
                     break;
                 case 1: {
-                        if ($resultTRUE == "B") {
+                        if (strcmp($resultTRUE,"B")==0) {
                             $res = 1;
                         }
+                        else{
+                            $res=0;
+                        }
                     }
+                    break;
                 case 2: {
-                        if ($resultTRUE == "C") {
+                        if (strcmp($resultTRUE,"C")==0) {
                             $res = 1;
                         }
+                        else{
+                            $res=0;
+                        }
                     }
+                    break;
                 case 3: {
-                        if ($resultTRUE == "D") {
+                        if (strcmp($resultTRUE,"D")==0) {
                             $res = 1;
                         }
+                        else{
+                            $res=0;
+                        }
                     }
+                    break;
                 default:
                     $res;
-            }
-            $sql3 = "INSERT INTO dap_an values('$maDA','$ans[$i]',$res,'$maCauHoi')";
+                    break;
+            };
+            $sql3 = "INSERT INTO dap_an VALUES('$maDA','$ans[$j]','$res','$maCauHoi')";
+            // echo $sql3;
             $result3 = mysqli_query($conn, $sql3);
+            // if($result3){
+            //     echo "</br>lưu thành công </br>";
+            // };
+        //    echo "Mã đáp án: $maDA ";
+        //    echo "đáp án: $ans[$j] ";
+        //    echo "đúng/sai: $res ";
+        //    echo "ma câu hỏi: $maCauHoi </br>";
         }
+        // echo "đáp án được chọn: $resultTRUE </br>";
+        
     }
     header('Location:../listTest');
 
