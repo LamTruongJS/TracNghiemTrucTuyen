@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="../footer/style.css">
     <title>Document</title>
 </head>
-<body> 
+
+<body>
     <div style='display:none'>
         <?php require '../header/index.php'; ?>
     </div>
@@ -42,20 +43,22 @@
            }
         ?>
         <form action='' method='POST' class='form'>
-            <input type='text' class='border form__pass__key' style='display:none' name='maBKT'/> 
+            <input type='text' class='border form__pass__key' style='display:none' name='maBKT' />
             <label class='text-center block'>Nhập mật khẩu</label>
-            <input type='password' name='passwordTest' class='border-2' value="<?php if(isset($_POST['passwordTest'])) echo $_POST['passwordTest']; else echo ''; ?>"/>
+            <input type='password' name='passwordTest' class='border-2'
+                value="<?php if(isset($_POST['passwordTest'])) echo $_POST['passwordTest']; else echo ''; ?>" />
             <p class='notify' class='notify'><?php echo $notify??''?></p>
             <div>
                 <button type='button' class='border btn_back'>
-                   Quay lại
+                    Quay lại
                 </button>
                 <button name='submit' type='submit' class='border'>Tiếp tục</button>
             </div>
         </form>
     </section>
-   
-    <script type='text/javascript' src='../js/confirmPassTest.js' ></script>
+
+    <script type='text/javascript' src='../js/confirmPassTest.js'></script>
+    <script type="text/javascript" src='../js/clock.js'> </script>
 </body>
-        
+
 </html>

@@ -57,6 +57,7 @@ if (isset($_POST['forgotpassword'])) {
         </form>
     </div>
     <script src="../js/forgotPasswordForm.js"></script>
+    <script type="text/javascript" src='../js/clock.js'> </script>
 </body>
 
 </html>

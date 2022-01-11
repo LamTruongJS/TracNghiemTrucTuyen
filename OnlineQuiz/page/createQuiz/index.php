@@ -22,9 +22,18 @@
     <?php require "../header/index.php"?>
     <?php 
         require '../../config.php';
-        // date_default_timezone_set("America/New_York");
-        // $date = date("Y-m-d h:i a");
-        // echo $date;
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $date = date("Y-m-d H:i ");
+        $timeStart2 = substr($date,0,10)."T".substr($date,11,5);
+        $maxTimeStart= strtotime("+1 month",strtotime($date));
+        $maxTimeStart = date("Y-m-d H:i",$maxTimeStart);
+        $newMaxTimeStart=substr($maxTimeStart,0,10)."T".substr($maxTimeStart,11,5);
+
+        $timeEnd2 = substr($date,0,10)."T".substr($date,11,5);
+        $maxTimeEnd= strtotime("+1 month",strtotime($date));
+        $maxTimeEnd = date("Y-m-d H:i",$maxTimeEnd);
+        $newMaxTimeEnd=substr($maxTimeEnd,0,10)."T".substr($maxTimeEnd,11,5);
+
         $email=$_SESSION['email'];
         $sql0="SELECT * FROM user where email like '$email'";
         $result0=mysqli_query($conn,$sql0);
@@ -53,17 +62,32 @@
               $maBKT='BKT'.rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
             };
           
-
-            if(strtotime($timeStart) < strtotime($timeEnd)){
-                $sql1="INSERT INTO bai_kiem_tra values ('$maBKT','$nameTest','$passTest','$description','$timeTest','$timeStart','$timeEnd','$userID')";
-                $result1 = mysqli_query($conn, $sql1);
-                if($result1){
-                    header("Location: /onlineQuiz/page/question?maBKT=$maBKT"); 
-                 }  
-            } 
-            else {
-                  $err='Thời gian chưa hợp lệ';      
+            $timeStart2=substr($timeStart,11,5);
+            $timeEnd2=substr($timeEnd,11,5);
+            // echo $timeStart2 ."<br>";
+            // echo $timeEnd2 ."<br>";
+            $newTime=substr($timeTest,0,2);
+            $res=strtotime ( "+$newTime minute" , strtotime ( $timeStart2) ) ;
+            
+           $res= date('H:i', $res);
+           
+            //    echo $res.'<br>';
+            if(strtotime(substr($timeStart,0,10))<strtotime(substr($timeEnd,0,10))){
+                     $sql1="INSERT INTO bai_kiem_tra values ('$maBKT','$nameTest','$passTest','$description','$timeTest','$timeStart','$timeEnd','$userID')";
+                    $result1 = mysqli_query($conn, $sql1);
+                    if($result1){
+                        header("Location: /onlineQuiz/page/question?maBKT=$maBKT"); 
+                    }  
             }
+            else if(strtotime($res)<=strtotime($timeEnd2)){
+                    $sql1="INSERT INTO bai_kiem_tra values ('$maBKT','$nameTest','$passTest','$description','$timeTest','$timeStart','$timeEnd','$userID')";
+                    $result1 = mysqli_query($conn, $sql1);
+                    if($result1){
+                        header("Location: /onlineQuiz/page/question?maBKT=$maBKT"); 
+                    }  
+             }      
+             else $err= "Thời gian chưa hợp lệ"; 
+           
         }
     ?>
     <main class='container min-w-full flex flex-col items-center'>
@@ -72,11 +96,13 @@
                 <table class=''>
                     <tr>
                         <td>Tên bài kiểm tra</td>
-                        <td><input name='nameTest' type='text' value="<?php if(isset($_POST['nameTest'])) echo $_POST['nameTest'];  ?>" require></td>
+                        <td><input name='nameTest' type='text'
+                                value="<?php if(isset($_POST['nameTest'])) echo $_POST['nameTest'];  ?>" require></td>
                     </tr>
                     <tr>
                         <td>Mật khẩu</td>
-                        <td><input name='passTest' type='password' value="<?php if(isset($_POST['passTest'])) echo $_POST['passTest'];  ?>" require></td>
+                        <td><input name='passTest' type='password'
+                                value="<?php if(isset($_POST['passTest'])) echo $_POST['passTest'];  ?>" require></td>
                     </tr>
                     <!-- <tr>
                         <td>Tổng số đề</td>
@@ -87,21 +113,24 @@
                     <tr>
                         <td>Thời gian làm bài</td>
                         <td>
-                            <input name='timeTest' type='number' placeholder='phút' min='1' value="<?php if(isset($_POST['timeTest'])) echo $_POST['timeTest'];  ?>" require>
+                            <input name='timeTest' type='number' placeholder='phút' min='1'
+                                value="<?php if(isset($_POST['timeTest'])) echo $_POST['timeTest']; ?>" require>
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu</td>
                         <td>
-                            <input name='timeStart' class='timeStart' type="datetime-local" value="<?php if(isset($_POST['timeStart'])) echo $_POST['timeStart']; else echo "2022-01-01T00:00"  ?>"
-                                min="2022-01-01T00:00" max="2022-02-01T00:00">
+                            <input name='timeStart' class='timeStart' type="datetime-local"
+                                value="<?php if(isset($_POST['timeStart'])) echo $_POST['timeStart']; else echo "$timeStart2"  ?>"
+                                min="<?php  echo $timeStart2?>" max="<?php echo $newMaxTimeStart ?>">
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian kết thúc</td>
                         <td>
-                            <input name='timeEnd' type="datetime-local" value="<?php if(isset($_POST['timeEnd'])) echo $_POST['timeEnd']; else echo "2022-01-01T00:00"  ?>"
-                                min="2022-01-01T00:00" max="2022-02-01T00:00">
+                            <input name='timeEnd' type="datetime-local"
+                                value="<?php if(isset($_POST['timeEnd'])) echo $_POST['timeEnd']; else echo "$timeEnd2"  ?>"
+                                min="<?php  echo $timeEnd2?>" max="<?php echo $newMaxTimeEnd ?>">
                         </td>
                     </tr>
                     <?php 
@@ -117,7 +146,8 @@
                     <tr>
                         <td>Tô tả</td>
                         <td>
-                            <textarea name='description' class='min-w-full'  require><?php if(isset($_POST['description'])) echo $_POST['description'];  ?></textarea>
+                            <textarea name='description' class='min-w-full'
+                                require><?php if(isset($_POST['description'])) echo $_POST['description'];  ?></textarea>
                         </td>
                     </tr>
                     <tr>

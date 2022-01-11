@@ -21,7 +21,8 @@
 <body>
     <?php require "../header/index.php" ?>
 
-    <form action="../checkMark/index.php" method='POST' name='form_time' id='form_time' class='container min-h-full grid grid-cols-5 min-w-full main__test'>
+    <form action="../checkMark/index.php" method='POST' name='form_time' id='form_time'
+        class='container min-h-full grid grid-cols-5 min-w-full main__test'>
         <div class='col-span-4 min-h-full container__test'>
             <?php require "../../config.php"; 
                 $maBKT=$_GET['maBKT'];
@@ -60,7 +61,8 @@
         </div>
         <div class='col-span-1 border rounded-2xl border-green-700 p-2 container__list bg-white'>
             <p class='text-lg inline-block border-b border-green-700'>Mã đề: 2291 </p>
-            <button type='submit' class='border p-2 border-red-600 hover:bg-red-500 hover:text-white float-right rounded-xl'>Nộp
+            <button type='submit'
+                class='border p-2 border-red-600 hover:bg-red-500 hover:text-white float-right rounded-xl'>Nộp
                 bài</button>
             <?php require '../../config.php';
                 $maBKT=$_GET['maBKT'];
@@ -97,5 +99,6 @@
 </body>
 <script type="text/javascript" src='../js/CheckDeadlineTest.js'></script>
 <script type='text/javascript' src='../js/CountTimeTest.js'></script>
+<script type="text/javascript" src='../js/clock.js'> </script>
 
 </html>
