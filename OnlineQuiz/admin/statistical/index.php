@@ -28,11 +28,11 @@
         </nav>
         <nav class="col-md-8 flex-1">
             <table class="table table-hover">
-                <h2 class='text-2xl text-green-900 mb-2'>Quản lí tài khoản</h2>
+                <h2 class='text-2xl text-green-900 mb-2'>Thống kê</h2>
                 <form action='' method='post'>
                     <input type="text" class="form-control w-50 float-left outline-style-none text__search">
                 </form>
-                <a href='../addAccount/index.php' class='rounded p-2 ml-4 btn btn-outline-success'>Thêm tài khoản</a>
+
                 <?php 
                   if(isset($_GET['res'])){
                     echo "<p class='text-red-500 animate-bounce float-right mr-12 border-2 border-red-600 p-2'>";
@@ -48,35 +48,33 @@
                         <th scope="col">STT</th>
                         <th scope="col">Mã</th>
                         <th scope="col">Tên</th>
-                        <th scope="col">Mật khẩu</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Quyền hạn</th>
-                        <th scope='col'>Tiện ích</th>
-
+                        <th scope="col" style="min-width:7rem;">Mật khẩu</th>
+                        <th scope="col">Mô tả</th>
+                        <th scope="col">Tác giả</th>
+                        <th scope="col">Tiện ích</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php 
                       require '../../config.php';
-                      $sql="SELECT * FROM user";
+                      $sql="SELECT * FROM bai_kiem_tra";
                       $result=mysqli_query($conn,$sql);
                       
                      for($i=1;$i<=$result->num_rows;$i++){
                        $row=mysqli_fetch_array($result);
-                       echo " <tr>
-                                  <th scope='row'>$i</th>
-                                  <td>".$row['maUser']."</td>
-                                  <td>".$row['tenUser']."</td>
-                                  <td>".$row['matKhau']."</td>
-                                  <td>".$row['email']."</td>
-                                  <td>".$row['maQuyen']."</td>
-                                  <td align='center'>
-                                    
-                                    <a href='../editAccount?maUser=".$row['maUser']."' >  <img class='d-inline mr-1' src='../../image/pencil.png' style='width:1.4rem'/></a>                          
-                                   
-                                     <a href='../removeAccount?maUser=".$row['maUser']."' > <img class='d-inline' src='../../image/trash.png'  style='width:1.4rem'/></a>
-                                   
-                                  </td>
+                       $maUser =$row['maUser'];
+                       $sql2="SELECT * FROM user where maUser like '$maUser'";
+                       $result2=mysqli_query($conn,$sql2);
+                       $row2=mysqli_fetch_array($result2);
+                       echo " <tr style='cursor:pointer;'>
+                                    <th scope='row'>$i</th>
+                                    <td>".$row['maBKT']."</td>
+                                    <td>".$row['tenBKT']."</td>
+                                    <td>".$row['matKhauBKT']."</td>
+                                    <td>".$row['moTa']."</td>
+                                    <td>".$row2['tenUser']."</td> 
+                                    <td><a class='btn btn-outline-primary mb-1' href='./markOfTestv1.php?maBKT=".$row['maBKT']."'>Thống kê v1</a>
+                                    <a class='btn btn-outline-primary' href='./markOfTestv2.php?maBKT=".$row['maBKT']."'>Thống kê v2</a></td>
                               </tr>";
                      }
                       
@@ -96,6 +94,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
 </script>
-<script type="text/javascript" src='../js/searchAccount.js'></script>
+<script type="text/javascript" src='../js/searchStatistical.js'></script>
 
 </html>
