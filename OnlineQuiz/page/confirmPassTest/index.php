@@ -23,31 +23,13 @@
         <?php require '../header/index.php'; ?>
     </div>
     <section class='border p-2'>
-        <?php 
-            include '../../config.php';
-           if(isset($_POST['submit'])){
-            $maBKT=$_GET['maBKT'];
-            $password=$_POST['passwordTest'];
-            $notify=$_POST['notify'] ??'';
-            
-            
-            $sql="SELECT * FROM bai_kiem_tra where maBKT like '%$maBKT%'";
-           
-            $result=mysqli_query($conn,$sql);
-            $row=mysqli_fetch_array($result);
-            
-            if(strcmp($row['matKhauBKT'], $password)==0){
-                header("Location: /onlineQuiz/page/test?maBKT=$maBKT");
-            }
-            else $notify='Mật khẩu không chính xác!';
-           }
-        ?>
-        <form action='' method='POST' class='form'>
-            <input type='text' class='border form__pass__key' style='display:none' name='maBKT' />
+        <form action='./confirm.php' method='POST' class='form'>
+            <input type='text' class='border form__pass__key' style='display:none' name='maBKT'
+                value='<?php echo$_GET['maBKT']; ?>' />
             <label class='text-center block'>Nhập mật khẩu</label>
             <input type='password' name='passwordTest' class='border-2'
                 value="<?php if(isset($_POST['passwordTest'])) echo $_POST['passwordTest']; else echo ''; ?>" />
-            <p class='notify' class='notify'><?php echo $notify??''?></p>
+            <?php if(isset($_GET['notify'])) echo "<p class='notify' class='notify'>Mật khẩu không chính xác</p>";?>
             <div>
                 <button type='button' class='border btn_back'>
                     Quay lại

@@ -16,7 +16,13 @@
 </head>
 
 <body class="">
-
+    <?php 
+        session_start();
+      
+        if (!isset($_SESSION['email'])) {
+            header('Location: /onlineQuiz/page/login');
+        }
+     ?>
     <!-- Component Start -->
     <div class="menu flex flex-col items-center h-full overflow-hidden">
         <a class="flex items-center w-full px-3 mt-3" href="#">
@@ -74,14 +80,7 @@
                     </svg>
                     <span class="ml-2 text-sm font-medium">Quản lí tài liệu</span>
                 </a>
-                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-green-900" href="#">
-                    <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                    </svg>
-                    <span class="ml-2 text-sm font-medium">Cài đặt tài khoản</span>
-                </a>
+
                 <a class="relative flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-green-900" href="#">
                     <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
@@ -90,6 +89,15 @@
                     </svg>
                     <span class="ml-2 text-sm font-medium">Duyệt bài</span>
                     <span class="absolute top-0 left-0 w-2 h-2 mt-2 ml-2 bg-indigo-500 rounded-full"></span>
+                </a>
+                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-green-900"
+                    href="../../page/logout/index.php">
+                    <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                    <span class="ml-2 text-sm font-medium">Đăng xuất</span>
                 </a>
             </div>
         </div>
@@ -100,16 +108,15 @@
                     d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <?php
-			// require '../../config.php';
-			// $email =$_SESSION['email'];
-			// echo $email
-			// $sql= "SELECT * FROM user where email like '$email'";
-			// $result = mysqli_query($conn,$sql);
-			// $row= mysqli_fetch_array($result);
-			// $userName= $row['tenUser'];
-			// echo "<span class='ml-2 text-sm font-medium'>$userName</span>";
+                require '../../config.php';
+                $email=$_SESSION['email'];
+                $sql= "SELECT * FROM user where email like '$email'";
+                $result = mysqli_query($conn,$sql);
+                $row= mysqli_fetch_array($result);
+                $userName= $row['tenUser'];
+                echo "<span class='ml-2 text-sm font-medium'>$userName</span>";
 			?>
-            <span class='ml-2 text-sm font-medium'>Lê Lâm Trường</span>
+
         </a>
     </div>
     <!-- Component End  -->

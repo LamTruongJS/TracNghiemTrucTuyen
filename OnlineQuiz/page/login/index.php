@@ -44,8 +44,8 @@ session_start();
             if ($row['maQuyen'] === 'user') {
                 header('Location: /onlineQuiz/page/home');
             } else {
-                // Phần này hoàn thành sau
-                // header('Location: /onlineQuiz/Admin/ad_acccounts/Admins.php');
+                
+                header('Location: /onlineQuiz/admin/account');
             }
         } else
             $error = 'Tên Đăng nhập hoặc mật khẩu không đúng';

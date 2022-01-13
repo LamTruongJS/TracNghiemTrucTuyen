@@ -38,7 +38,8 @@
                     Nền tảng tạo đề thi online trong giáo dục
                 </div>
                 <div class='mt-10 ml-6'>
-                    <button type='button' class='animate-bounce rounded-3xl border p-2 px-4 bg-green-600 text-white ring-2 text-2xl'>
+                    <button type='button'
+                        class='animate-bounce rounded-3xl border p-2 px-4 bg-green-600 text-white ring-2 text-2xl'>
                         Xin Chào Bạn </button>
                 </div>
             </div>
@@ -85,7 +86,7 @@
                                 </div>";
                         $conn->close();
                     ?>
-                     <?php 
+                    <?php 
                         require '../../config.php';
                         $sql='SELECT * FROM bai_kiem_tra';
                         $result =mysqli_query($conn,$sql);
@@ -96,7 +97,7 @@
                                 </div>";
                         $conn->close();
                     ?>
-                 
+
                     <div class=' three__item'>
                         <img src='../../image/website-1.png'>
                         <div>10.000<br>Tài liệu</div>

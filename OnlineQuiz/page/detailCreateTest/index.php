@@ -34,6 +34,10 @@
                         <option value="markASC">Tăng dần theo điểm</option>
                         <option value="markDESC">Giảm dần theo điểm</option>
                     </select>
+                    <button
+                        class='border border-green-500 p-2 m-2 rounded-lg right hover:bg-green-500 hover:text-white'><a
+                            href="<?php echo '../statiscalTest?maBKT='.$_GET["maBKT"] ?>"> Xem Thống
+                            Kê</a></button>
                 </form>
                 <div>
                     <table class="table__students">
