@@ -41,14 +41,18 @@ session_start();
                 setcookie("password", $_SESSION['password'], time() + 60 * 60 * 24 * 100, "/");
                 $_COOKIE["password"];
             }
-            if ($row['maQuyen'] === 'user') {
+            if ($row['maQuyen'] === 'user' && $row['trangThai'] ==0) {
                 header('Location: /onlineQuiz/page/home');
-            } else {
+            }
+            else if($row['maQuyen'] === 'admin' && $row['trangThai'] ==0) {
                 
                 header('Location: /onlineQuiz/admin/account');
             }
+            else{
+                $error='Tài khoản của bạn đang bị khóa </br> Liên hệ: truongle.28100@gmail.com';
+            }
         } else
-            $error = 'Tên Đăng nhập hoặc mật khẩu không đúng';
+            $error = 'Email đăng nhập hoặc mật khẩu không đúng';
     }
 
 

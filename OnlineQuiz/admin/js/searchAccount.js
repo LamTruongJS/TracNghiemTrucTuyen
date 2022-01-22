@@ -11,7 +11,8 @@
             second: itemElement[1].innerText,
             third: itemElement[2].innerText,
             fourth: itemElement[3].innerText,
-            five: itemElement[4].innerText
+            five: itemElement[4].innerText,
+            six: itemElement[5].innerText
         }
         arrayElements.push(item);
     }
@@ -32,6 +33,13 @@
             }
         }
         for (let i = 0; i < arrayResult.length; i++) {
+            let text = "";
+            if (arrayResult[i].six == '0') {
+                text = `<a href='../lock_unlock/lock.php?maUser=${arrayResult[i].first}' ><img class='d-inline' src='../../image/padlock.png'  style='width: 1.4rem'/></a>`;
+            }
+            else {
+                text = `<a href='../lock_unlock/Unlock.php?maUser=${arrayResult[i].first}' ><img class='d-inline' src='../../image/Unlock.png'  style='width: 1.4rem'/></a>`;
+            }
             container.innerHTML += `<tr>
                                         <th scope='row'>${i + 1}</th>
                                         <td>${arrayResult[i].first}</td>
@@ -40,8 +48,8 @@
                                         <td>${arrayResult[i].fourth}</td>
                                         <td>${arrayResult[i].five}</td>
                                         <td align='center'>                                
-                                        <a href='#' >  <img class='d-inline mr-1' src='../../image/pencil.png' style='width:1.4rem'/></a>                             
-                                         <a href='../removeAccount?maUser=${arrayResult[i].first}' > <img class='d-inline' src='../../image/trash.png'  style='width:1.4rem'/></a>
+                                        <a href='../editAccount?maUser=${arrayResult[i].first}' ><img class='d-inline mr-1' src='../../image/pencil.png' style='width:1.4rem'/></a>                             
+                                         ${text}
                                        
                                       </td>
                                     </tr>`

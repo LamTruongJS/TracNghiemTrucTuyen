@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <link rel="stylesheet" href="../../build/tailwind.css" />
 
 
@@ -27,61 +28,49 @@
 
         </nav>
         <nav class="col-md-8 flex-1">
-            <table class="table table-hover">
-                <h2 class='text-2xl text-green-900 mb-2'>Thống kê</h2>
-                <form action='' method='post'>
-                    <input type="text" class="form-control w-50 float-left outline-style-none text__search">
-                </form>
 
-                <?php 
-                  if(isset($_GET['res'])){
-                    echo "<p class='text-red-500 animate-bounce float-right mr-12 border-2 border-red-600 p-2'>";
-                        if($_GET['res']=='resolveRemove'){
-                            echo "Đã Xóa";
-                        }
-                        else echo "Đã Cập Nhật";
-                    echo"Thành Công</p>";
-                  }
-                ?>
-                <thead>
-                    <tr>
-                        <th scope="col">STT</th>
-                        <th scope="col">Mã</th>
-                        <th scope="col">Tên</th>
-                        <th scope="col" style="min-width:7rem;">Mật khẩu</th>
-                        <th scope="col">Mô tả</th>
-                        <th scope="col">Tác giả</th>
-                        <th scope="col">Tiện ích</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                      require '../../config.php';
-                      $sql="SELECT * FROM bai_kiem_tra";
-                      $result=mysqli_query($conn,$sql);
-                      
-                     for($i=1;$i<=$result->num_rows;$i++){
-                       $row=mysqli_fetch_array($result);
-                       $maUser =$row['maUser'];
-                       $sql2="SELECT * FROM user where maUser like '$maUser'";
-                       $result2=mysqli_query($conn,$sql2);
-                       $row2=mysqli_fetch_array($result2);
-                       echo " <tr style='cursor:pointer;'>
-                                    <th scope='row'>$i</th>
-                                    <td>".$row['maBKT']."</td>
-                                    <td>".$row['tenBKT']."</td>
-                                    <td>".$row['matKhauBKT']."</td>
-                                    <td>".$row['moTa']."</td>
-                                    <td>".$row2['tenUser']."</td> 
-                                    <td><a class='btn btn-outline-primary mb-1' href='./markOfTestv1.php?maBKT=".$row['maBKT']."'>Thống kê v1</a>
-                                    <a class='btn btn-outline-primary' href='./markOfTestv2.php?maBKT=".$row['maBKT']."'>Thống kê v2</a></td>
-                              </tr>";
-                     }
-                      
-                    ?>
-
-                </tbody>
-            </table>
+            <nav class="m-0">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active itemBar text-muted" id="nav-bar-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-bar" type="button" role="tab" aria-controls="nav-bar"
+                        aria-selected="true">Bar</button>
+                    <button class="nav-link itemLine text-muted" id="nav-line-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-line" type="button" role="tab" aria-controls="nav-line"
+                        aria-selected="false">Line</button>
+                    <button class="nav-link itemHorizontalBar text-muted" id="nav-horizontalBar-tab"
+                        data-bs-toggle="tab" data-bs-target="#nav-horizontalBar" type="button" role="tab"
+                        aria-controls="nav-horizontalBar" aria-selected="false">HorizontalBar</button>
+                </div>
+            </nav>
+            <div class="tab-content p-0" id="nav-tabContent">
+                <div class="tab-pane show active w-100" id="nav-bar" role="tabpanel" aria-labelledby="nav-bar-tab">
+                    <canvas id="myChartBar" class="w-100" style="width: 100rem; height: 30rem"></canvas>
+                </div>
+                <div class="container tab-pane w-100 m-0 p-0" id="nav-line" role="tabpanel"
+                    aria-labelledby="nav-line-tab">
+                    <canvas id="myChartLine" class="w-100 m-0" style="width: 100rem; height: 30rem"></canvas>
+                </div>
+                <div class="container tab-pane w-100 m-0 p-0" id="nav-horizontalBar" role="tabpanel"
+                    aria-labelledby="nav-horizontalBar-tab">
+                    <canvas id="myChartHorizontalBar" class="w-100" style="width: 100rem; height: 30rem"></canvas>
+                </div>
+            </div>
+        </nav>
+        <nav class='d-none'>
+            <?php 
+                require '../../config.php';
+                $sql="SELECT * FROM user ORDER BY thoiGian ASC";
+                $result=mysqli_query($conn,$sql);   
+                for($i=1;$i<$result->num_rows;$i++){
+                    $row=mysqli_fetch_array($result);
+                   
+                        $ngayThang=$row['thoiGian'];
+                        $res=substr($ngayThang,5,2);   
+                        echo "<div class='month'>Tháng $i</div>";
+                        echo "<div class='date'>$res</div>";
+                
+                }       
+            ?>
         </nav>
     </nav>
 </body>
@@ -94,6 +83,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
 </script>
-<script type="text/javascript" src='../js/searchStatistical.js'></script>
+<script type="text/javascript" src='../js/chartUser.js'></script>
 
 </html>

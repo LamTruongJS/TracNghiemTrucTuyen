@@ -18,6 +18,7 @@ if (isset($_POST['register'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
   $confirm_password = $_POST['confirm_password'];
+  $date= date('Y/m/d');
   require '../../config.php';
   if ($password !== $confirm_password) {
     $errPassword = 'Mật khẩu không trùng khớp !';
@@ -40,11 +41,13 @@ if (isset($_POST['register'])) {
     while (in_array($index,$tempID)) {
       $index='ID'.rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
     }
-    $sql = "INSERT INTO user values('$index','$username','$password','$email','user')";
+    $sql = "INSERT INTO user values('$index','$username','$password','$email','0','$date','user')";
+   
     $result = mysqli_query($conn, $sql);
     if($result){
       header('Location: /onlineQuiz/page/home');
     }
+   
     }
   }
 
@@ -82,7 +85,7 @@ if (isset($_POST['register'])) {
             <div class="form__register__confirm__password">
                 <p class="form__register__confirm__password--title">Nhập lại mật khẩu</p>
                 <input type="password" class="form__register__confirm__password--input"
-                    value='<?php if(isset($_POST['confirm_password'])) echo $_POST['username']; else echo '' ?>'
+                    value='<?php if(isset($_POST['confirm_password'])) echo $_POST['confirm_password']; else echo '' ?>'
                     name="confirm_password" required maxlength="20" />
                 <div class="form__register__confirm__password__icon">
                     <i class="far fa-eye eyes_password_confirm"></i>

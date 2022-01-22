@@ -28,6 +28,7 @@
                 $maBKT=$_GET['maBKT'];
                 $sql="SELECT * FROM cau_hoi where maBKT like '$maBKT'";
                 $result= mysqli_query($conn, $sql);
+                //lặp qua số câu hỏi của 1 bài kiểm tra
                 for($i=1;$i<=$result->num_rows;$i++) {
                     $row=mysqli_fetch_array($result);
                     $maCauHoi=$row['maCauHoi'];
@@ -60,7 +61,7 @@
                 ?>
         </div>
         <div class='col-span-1 border rounded-2xl border-green-700 p-2 container__list bg-white'>
-            <p class='text-lg inline-block border-b border-green-700'>Mã đề: 2291 </p>
+            <p class='text-lg inline-block border-b border-green-700'>Mã đề:......</p>
             <button type='submit'
                 class='border p-2 border-red-600 hover:bg-red-500 hover:text-white float-right rounded-xl'>Nộp
                 bài</button>

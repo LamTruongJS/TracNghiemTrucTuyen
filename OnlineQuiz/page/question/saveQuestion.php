@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
             while (in_array($maCauHoi,$tempCH)) {
                 $maCauHoi = 'CH' . rand(0, 9) . rand(0, 9) . rand(0, 9). rand(0, 9). rand(0, 9);
             };
-     
+            //lưu câu hỏi vào CSDL
         $sql1 = "INSERT INTO cau_hoi values('$maCauHoi','$question','$maBKT')";
         
         $result1 = mysqli_query($conn, $sql1);
@@ -92,6 +92,7 @@ if (isset($_POST['submit'])) {
                     $res;
                     break;
             };
+            //lưu đáp án vào CSDL
             $sql3 = "INSERT INTO dap_an VALUES('$maDA','$ans[$j]','$res','$maCauHoi')";
             // echo $sql3;
             $result3 = mysqli_query($conn, $sql3);

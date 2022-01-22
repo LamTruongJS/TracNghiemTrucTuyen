@@ -188,14 +188,14 @@
                                 echo "<span class='text-blue-700 text-lg text-right block'>$success</span>";
                             }
                             echo "<label>Email đăng nhập</label>";
-                            echo " <input type='email' name='emailUser' value='$email' readonly/>";
+                            echo " <input type='email' name='emailUser' value='$email' readonly required/>";
                             if(isset($err)){
                                 echo "<span class='text-red-600 text-sm text-left block'>$err</span>";
                             }
                             echo "<label>Tên người dùng</label>";
-                            echo "<input type='text' name='nameUser' value='$userName' require readonly>";
+                            echo "<input type='text' name='nameUser' value='$userName' required readonly>";
                             echo "<label>Mật khẩu</label>";
-                            echo " <input type='password' name='passwordUser' require value='$userPassword' readonly>";
+                            echo " <input type='password' name='passwordUser' require value='$userPassword' readonly required>";
                             $conn->close();
                         ?>
                         <button type="button">Chỉnh sửa thông tin</button>

@@ -97,12 +97,12 @@
                     <tr>
                         <td>Tên bài kiểm tra</td>
                         <td><input name='nameTest' type='text'
-                                value="<?php if(isset($_POST['nameTest'])) echo $_POST['nameTest'];  ?>" require></td>
+                                value="<?php if(isset($_POST['nameTest'])) echo $_POST['nameTest'];  ?>" required></td>
                     </tr>
                     <tr>
                         <td>Mật khẩu</td>
                         <td><input name='passTest' type='password'
-                                value="<?php if(isset($_POST['passTest'])) echo $_POST['passTest'];  ?>" require></td>
+                                value="<?php if(isset($_POST['passTest'])) echo $_POST['passTest'];  ?>" required></td>
                     </tr>
                     <!-- <tr>
                         <td>Tổng số đề</td>
@@ -114,7 +114,7 @@
                         <td>Thời gian làm bài</td>
                         <td>
                             <input name='timeTest' type='number' placeholder='phút' min='1'
-                                value="<?php if(isset($_POST['timeTest'])) echo $_POST['timeTest']; ?>" require>
+                                value="<?php if(isset($_POST['timeTest'])) echo $_POST['timeTest']; ?>" required>
                         </td>
                     </tr>
                     <tr>
@@ -122,7 +122,7 @@
                         <td>
                             <input name='timeStart' class='timeStart' type="datetime-local"
                                 value="<?php if(isset($_POST['timeStart'])) echo $_POST['timeStart']; else echo "$timeStart2"  ?>"
-                                min="<?php  echo $timeStart2?>" max="<?php echo $newMaxTimeStart ?>">
+                                min="<?php  echo $timeStart2?>" max="<?php echo $newMaxTimeStart ?>" required>
                         </td>
                     </tr>
                     <tr>
@@ -130,7 +130,7 @@
                         <td>
                             <input name='timeEnd' type="datetime-local"
                                 value="<?php if(isset($_POST['timeEnd'])) echo $_POST['timeEnd']; else echo "$timeEnd2"  ?>"
-                                min="<?php  echo $timeEnd2?>" max="<?php echo $newMaxTimeEnd ?>">
+                                min="<?php  echo $timeEnd2?>" max="<?php echo $newMaxTimeEnd ?>" required>
                         </td>
                     </tr>
                     <?php 
@@ -147,7 +147,7 @@
                         <td>Tô tả</td>
                         <td>
                             <textarea name='description' class='min-w-full'
-                                require><?php if(isset($_POST['description'])) echo $_POST['description'];  ?></textarea>
+                                required><?php if(isset($_POST['description'])) echo $_POST['description'];  ?></textarea>
                         </td>
                     </tr>
                     <tr>

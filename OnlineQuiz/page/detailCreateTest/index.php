@@ -140,15 +140,15 @@
                     echo "  <span class='text-blue-700 text-lg text-right block'></span>
                             <input style='display:none' type='text' value='$maBKT' name='maBKT' />
                             <label>Tên bài kiểm tra</label> 
-                            <input type='text' name='tenBKT' value='".$row['tenBKT']."' readonly/>
+                            <input type='text' name='tenBKT' value='".$row['tenBKT']."' readonly required/>
                             <label>Mật khẩu</label>
-                            <input type='password' name='matKhauBKT' value='".$row['matKhauBKT']."' require readonly>
+                            <input type='password' name='matKhauBKT' value='".$row['matKhauBKT']."' required readonly>
                             <label>Thời gian làm bài</label>
-                            <input type='text' name='time' require value='".$row['thoiGian']." phút' readonly>
+                            <input type='text' name='time' required value='".$row['thoiGian']." phút' readonly>
                             <label>Thời gian mở</label>
-                            <input type='datetime-local' name='timeStart' require value='".$tempStart."' readonly>
+                            <input type='datetime-local' name='timeStart' required value='".$tempStart."' readonly>
                             <label>Thời gian đóng</label>
-                            <input type='datetime-local' name='timeEnd' require value='".$tempEnd."' readonly>
+                            <input type='datetime-local' name='timeEnd' required value='".$tempEnd."' readonly>
                          "
                 ?>
                     <button type="button">Chỉnh sửa thông tin</button>

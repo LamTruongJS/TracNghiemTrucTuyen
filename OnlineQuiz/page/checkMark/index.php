@@ -74,12 +74,12 @@
         //lấy ra bảng kết quả lọc maKQ
         $sql4='SELECT * FROM ket_qua';
         $result4=mysqli_query($conn,$sql4);
-        $maKQ='KQ'.rand(0,9).rand(0,9).rand(0,9);
+        $maKQ='KQ'.rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
        
             $row=mysqli_fetch_array($result4);
           if($result4->num_rows!=0){
             while(strcmp($maKQ,$row['maKQ'])==0){
-                $maKQ='KQ'.rand(0,9).rand(0,9).rand(0,9);
+                $maKQ='KQ'.rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
                }
         
           }

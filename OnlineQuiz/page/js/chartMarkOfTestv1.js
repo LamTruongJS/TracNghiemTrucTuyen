@@ -188,7 +188,8 @@ var configLine = {
 
       xAxes: [{
         ticks: {
-          beginAtZero: true
+          beginAtZero: true,
+
         }
       }]
     },

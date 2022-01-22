@@ -30,7 +30,7 @@ if (isset($_POST['forgotpassword'])) {
     $errEmail = "Email chưa tồn tại !";
   }
   if ($num_rowsEmail != 0 && $password === $confirm_password) {
-    $randomCODE=rand(1000,9999);
+      $randomCODE=rand(1000,9999);
       $_SESSION['PINCode'] =$randomCODE;
       $_SESSION['email']=$email;
       $_SESSION['password']=$password;
