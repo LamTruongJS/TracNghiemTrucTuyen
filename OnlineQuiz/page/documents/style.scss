@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.content__document__left {
+  padding-top: 2rem;
+  padding-left: 0.5rem;
+  .left__name {
+    font-size: 15px;
+    color: rgba(80, 77, 77, 0.8);
+  }
+
+  .left__search {
+    width: 100%;
+    margin-top: 1rem;
+
+    input {
+      margin-right: 0.5rem;
+      padding: 8px 4px;
+      outline-style: none;
+      width: 95%;
+      background-color: #fff;
+      box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 20%);
+      border: 3px solid #009432;
+    }
+  }
+  .left__rank__document {
+    ul {
+      font-size: 15px;
+      color: rgba(80, 77, 77, 0.8);
+
+      overflow: hidden;
+      li {
+        margin: 5px 10px 0;
+        a {
+          white-space: pre-wrap;
+          overflow: hidden; // ẩn các nội dung khi kích thước lớn hơn chiều rộng khối bên ngoài
+          text-overflow: ellipsis; //thêm 3 dấu chấm ở cuối
+          -webkit-line-clamp: 1; // số dòng muốn hiển thị
+          -webkit-box-orient: vertical;
+          display: -webkit-box;
+        }
+        &:hover {
+          color: #26ba99;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .left__rank__mark {
+    ul {
+      font-size: 15px;
+      color: rgba(80, 77, 77, 0.8);
+
+      overflow: hidden;
+      li {
+        margin: 5px 10px 0;
+        a {
+          white-space: pre-wrap;
+          overflow: hidden; // ẩn các nội dung khi kích thước lớn hơn chiều rộng khối bên ngoài
+          text-overflow: ellipsis; //thêm 3 dấu chấm ở cuối
+          -webkit-line-clamp: 1; // số dòng muốn hiển thị
+          -webkit-box-orient: vertical;
+          display: -webkit-box;
+        }
+        &:hover {
+          color: #26ba99;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.content__document__doc {
+  .doc__item {
+    background-color: #fff;
+    box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 20%);
+    border: 1px solid white;
+    padding: 3rem 2rem 1rem;
+    border-radius: 10px;
+    text-align: center;
+    height: 17rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    .doc__item__img {
+      max-width: 90%;
+      max-height: 7rem;
+      height: 7rem;
+      min-height: 7rem;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
+    }
+    .doc__desc {
+      text-align: left;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      white-space: pre-wrap;
+      overflow: hidden; // ẩn các nội dung khi kích thước lớn hơn chiều rộng khối bên ngoài
+      text-overflow: ellipsis; //thêm 3 dấu chấm ở cuối
+      -webkit-line-clamp: 2; // số dòng muốn hiển thị
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+    }
+    span {
+      color: #6b7b8f;
+      width: 100%;
+      display: block;
+      text-align: right;
+      margin-right: -1rem;
+    }
+  }
+}

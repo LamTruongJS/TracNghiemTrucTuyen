@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.content__document__left {
+  padding-top: 2rem;
+  padding-left: 0.5rem;
+}
+.content__document__left .left__name {
+  font-size: 15px;
+  color: rgba(80, 77, 77, 0.8);
+}
+.content__document__left .left__search {
+  width: 100%;
+  margin-top: 1rem;
+}
+.content__document__left .left__search input {
+  margin-right: 0.5rem;
+  padding: 8px 4px;
+  outline-style: none;
+  width: 95%;
+  background-color: #fff;
+  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.2);
+  border: 3px solid #009432;
+}
+.content__document__left .left__rank__document ul {
+  font-size: 15px;
+  color: rgba(80, 77, 77, 0.8);
+  overflow: hidden;
+}
+.content__document__left .left__rank__document ul li {
+  margin: 5px 10px 0;
+}
+.content__document__left .left__rank__document ul li a {
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+.content__document__left .left__rank__document ul li:hover {
+  color: #26ba99;
+  cursor: pointer;
+}
+.content__document__left .left__rank__mark ul {
+  font-size: 15px;
+  color: rgba(80, 77, 77, 0.8);
+  overflow: hidden;
+}
+.content__document__left .left__rank__mark ul li {
+  margin: 5px 10px 0;
+}
+.content__document__left .left__rank__mark ul li a {
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+.content__document__left .left__rank__mark ul li:hover {
+  color: #26ba99;
+  cursor: pointer;
+}
+
+.content__document__doc .doc__item {
+  background-color: #fff;
+  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid white;
+  padding: 3rem 2rem 1rem;
+  border-radius: 10px;
+  text-align: center;
+  height: 17rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.content__document__doc .doc__item .doc__item__img {
+  max-width: 90%;
+  max-height: 7rem;
+  height: 7rem;
+  min-height: 7rem;
+  overflow: hidden;
+}
+.content__document__doc .doc__item .doc__item__img img {
+  width: 100%;
+}
+.content__document__doc .doc__item .doc__desc {
+  text-align: left;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+.content__document__doc .doc__item span {
+  color: #6b7b8f;
+  width: 100%;
+  display: block;
+  text-align: right;
+  margin-right: -1rem;
+}
+
+/*# sourceMappingURL=style.css.map */
